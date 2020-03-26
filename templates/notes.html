@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Notes</title>
+  </head>
+  <body>
+    <h1>Notes</h1>
+
+    {% for note in Notes %}
+        {{ note.name }}:
+        {% for item in Items %}
+        <ul>
+            {% if item.note_id == note %}
+            
+                <li>{{item.item_name}}</li>
+            {% endif %}
+        </ul>
+        {% endfor %}
+        <br>
+    {% endfor %}
+    <form method="post">
+      {% csrf_token %}
+        <div class="form-group">
+          <label for="id_note_name">
+            Note Name
+          </label>
+          <input type="text" class="form-control" id="id_note_name" name="note_name">
+        </div>
+        <button type="submit" class="btn btn-success">
+          Add Note
+        </button>
+      </form>
+  <form method="post">
+  {% csrf_token %}
+    <div class="form-group">
+      <label for="id_item_name">
+        Item Name
+      </label>
+      <input type="text" class="form-control" id="id_item_name" name="item_name">
+    </div>
+    </br>
+    Note&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select id="note_id" name="note_id">
+      {% for note in Notes %}
+      <option value={{note.id}}>
+        {{note.name}}
+      </option>
+      {%endfor%}
+    </select>
+    <br><br>
+    <button type="submit" class="btn btn-success">
+      Add Item
+    </button>
+  </form>
+  </body>
+</html>
