@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'hello',
     'notes',
-    'accounts'
+    'accounts'# <= latest app
 ]
 
 MIDDLEWARE = [
@@ -126,5 +126,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
-LOGIN_REDIRECT_URL = 'hello'

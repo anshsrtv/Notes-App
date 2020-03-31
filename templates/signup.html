@@ -4,12 +4,10 @@
     </head>
     <body>
         <h1>Sign up</h1>
-        {% block content %}
         <form method="post" novalidate>
             {% csrf_token %}
         {{form.as_p}}
         <button type="submit" class="btn btn-success">Create an account</button>
-        {% endblock %}
     </form>
     </body>
 </html>

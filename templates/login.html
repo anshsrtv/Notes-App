@@ -3,22 +3,18 @@
         <title>Login</title>
     </head>
     <body>
-        {% block content %}
-        <h3 class="card-title">Log in</h3>
+        <h3>Log in</h3>
+        {% for message in messages %}
+        <div>
+            <font color="red">
+                {{ message }}
+            </font>
+        </div>
+        {% endfor %}
             <form method="post" novalidate>
               {% csrf_token %}
               {{form.as_p}}
-              <button type="submit" class="btn btn-primary btn-block">Log in</button>
+              <button type="submit">Log in</button>
             </form> 
-            {% for message in messages %}
-
-            <div class="alert alert-success">
-                <a class="close" href="#" data-dismiss="alert">×</a>
-
-                {{ message }}
-
-            </div>
-            {% endfor %}
-        {% endblock %}
     </body>
 </html>

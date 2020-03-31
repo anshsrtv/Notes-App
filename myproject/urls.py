@@ -17,14 +17,18 @@ from django.contrib import admin
 from django.urls import path
 from hello.views import home
 from notes import views
-from accounts import views as accounts_views
-from django.contrib.auth import views as authentication_views
+from accounts import views as accounts_views # Avoiding conflict
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('notes/', views.home, name='notes'),
-    path('signup/', accounts_views.sign_up, name='signup'),
-    path('login/', accounts_views.log_in, name='login'),
-    path('logout/', accounts_views.log_out, name='logout'),
+    path('signup/', accounts_views.sign_up,
+        name='signup'), # <= sign up route
+    path('logout/', accounts_views.log_out, 
+        name='logout'), # <= log out route
+    path('login/', accounts_views.log_in, 
+        name='login'), # <= log in route
     ]
+    
+    
