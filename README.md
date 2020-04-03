@@ -1,2 +1,2 @@
 # Notes-App
-Notes & Blog App with user authentication
+Notes & Blog App with Token authentication
