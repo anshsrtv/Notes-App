@@ -1,7 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-@login_required(login_url='/login/')
-def home(request):
-    return render(request,'home.html',{'name':request.user.first_name})
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated  # <-- Here
 
+
+class HelloView(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request):
+        content = {'message': 'Hello, World!'}
+        return Response(content)

@@ -14,14 +14,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from hello.views import home
-from notes import views
+from django.urls import include, path
+from hello.views import HelloView
+from notes import views 
 from accounts import views as accounts_views # Avoiding conflict
+from rest_framework.authtoken import views as token_views
+from blog.views import BlogView
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'blogs', BlogView)
 
 urlpatterns = [
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
-    path('', home, name='home'),
+    path('hello/', HelloView.as_view(), name='home'),
     path('notes/', views.home, name='notes'),
     path('signup/', accounts_views.sign_up,
         name='signup'), # <= sign up route
@@ -29,6 +36,7 @@ urlpatterns = [
         name='logout'), # <= log out route
     path('login/', accounts_views.log_in, 
         name='login'), # <= log in route
-    ]
+    path('token-auth/', token_views.obtain_auth_token),
+]
     
     
